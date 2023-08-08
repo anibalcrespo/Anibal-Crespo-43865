@@ -1,0 +1,25 @@
+El proyecto Blog tiene una aplicacion: AppBlog
+Creada por Anibal Crespo - Alumno del Curso de Django / Python de la comision 43865 de CODERHOUSE
+-----------------------------------------------------------------------------------------------------------
+Los modelos son:
+- Blog: CRUD de blogs
+- Post: CRUD de publicaciones
+- Comments: CRUD de comentarios
+- Avatar: Imagen del perfil
+- User: Para acceder a algunas funciones restringidas
+-----------------------------------------------------------------------------------------------------------
+Aclaraciones Importantes:
+- El proyecto usa CKEditor (pip install django-ckeditor)
+- Esta 100% funcional (bastante para mejorar y agregar que le dara valor al producto)
+- Sube imagenes, con lo cual necesite tambien instalar pillow (python -m pip install Pillow)
+-----------------------------------------------------------------------------------------------------------
+El objetivo funcional:
+Un sitio web que preveea la mayor cantidad de contenidos vistos en clase.
+En este caso se trata de un blog (creado de blogs) que a su vez con cierta logica de negocio puedan crearse
+publicaciones (post) y comentarios (comments)
+Ademas de proveer un link hacia el repositorio donde se encuentra el codigo fuente.
+-----------------------------------------------------------------------------------------------------------
+La logica de negocio de las funnciones accesibles de la aplicacion se encuentrar detalladas en el archivo
+excel "Permisos Blog Python.xlsx" adjunto en el repositorio.
+-----------------------------------------------------------------------------------------------------------
+La clave del usuario admin es: 12345 

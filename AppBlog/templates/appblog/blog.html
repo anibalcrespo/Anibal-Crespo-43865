@@ -1,0 +1,97 @@
+{% extends 'appblog/base.html' %}
+{% load static %}
+
+        {% block header %}
+        <!-- Page Header-->
+        <header class="masthead" style="background-image: url('{{ blog.portada.url }}')">
+            <div class="container position-relative px-4 px-lg-5">
+                <div class="row gx-4 gx-lg-5 justify-content-center">
+                    <div class="col-md-10 col-lg-8 col-xl-7">
+                        <div class="blog-heading">
+                            <h1>{{ blog.nombre }}</h1>
+                            <h2 class="subheading">{{ blog.descripcion }}</h2>
+                            <span class="meta">
+                                Creado por
+                                {% if blog.user.username is None %} 
+                                    Anonimo 
+                                {% else %}
+                                    <a href="#!">{{ blog.user.username }}</a>
+                                {% endif %}
+                                el {{ blog.fecha }} - <i>
+
+                                {%if blog.visibilidad == 0 %} 
+                                    (Publico)
+                                {% elif blog.visibilidad == 1 %}
+                                    (Restringido)
+                                {% else %} 
+                                    (Privado) 
+                                {% endif %}</i>
+
+                                {% if blog.user.id == user.id %}
+                                <a href="{% url 'editBlog' blog.id %}">
+                                    <i class="fa-regular fa-pen-to-square"></i> Editar
+                                </a>| 
+                                <a href="{% url 'deleteBlog' blog.id %}">
+                                    <i class="fas fa-trash-alt"></i> Eliminar
+                                </a>
+                                {% endif %}
+
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+        {% endblock header %}
+
+        {% block content %}
+
+        <!-- Main Content-->
+        <div class="container px-4 px-lg-5">
+            <div class="row gx-4 gx-lg-5 justify-content-center">
+                <div class="col-md-10 col-lg-8 col-xl-7">
+                    {% for post in posts %}
+                        <!-- Post preview-->
+                        <div class="post-preview">
+                            <a href="{% url 'post' post.id %}">
+                                <h2 class="post-title">{{ post.titulo}}</h2>
+                                <h3 class="post-subtitle">{{ post.descripcion }}</h3>
+                                {% if post.imagen %}
+                                    <img src="{{ post.imagen.url }}" class="img-fluid" style="width: 100%;"/>
+                                {% endif %}
+                            </a>
+                            <p class="post-meta">
+                                Publicado por
+                                {% if post.user.username is None %} 
+                                    Anonimo 
+                                {% else %}
+                                    <a href="#!">{{ post.user.username }}</a>
+                                {% endif %}
+                                el {{ blog.fecha }} - <i>
+
+                                {%if blog.estado == 0 %} 
+                                    (Inactivo) 
+                                {% else %} 
+                                    (Activo) 
+                                {% endif %}</i>
+                                
+                                {% if post.blog.user.id == user.id %}
+                                <a href="{% url 'editPost' post.id %}">
+                                    <i class="fa-regular fa-pen-to-square"></i> Editar
+                                </a>| 
+                                <a href="{% url 'deletePost' post.id %}">
+                                    <i class="fas fa-trash-alt"></i> Eliminar
+                                </a>
+                                {% endif %}
+
+                            </p>
+                        </div>
+                        <!-- Divider-->
+                        <hr class="my-4" />
+                    {% endfor %}
+                    <!-- Pager-->
+                    <div class="d-flex justify-content-center mb-4"><a class="btn btn-primary text-uppercase m-1" href="{% url 'createPost' blog.id %}">Crear un Post</a> <a class="btn btn-primary text-uppercase m-1" href="{% url 'allpost' blog.id %}">Todos los Post</a></div>
+                </div>
+            </div>
+        </div>
+        {% endblock content %}
